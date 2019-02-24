@@ -5,11 +5,33 @@ plugins {
     id("com.github.ben-manes.versions") version "0.20.0"
 }
 
+repositories {
+    mavenCentral()
+}
+
 kotlin {
     targets {
-        macosX64()
-        linuxX64()
-        linuxArm32Hfp()
+        macosX64 {
+            binaries {
+                executable {
+                    // Binary configuration.
+                }
+            }
+        }
+        linuxX64 {
+            binaries {
+                executable {
+                    // Binary configuration.
+                }
+            }
+        }
+        linuxArm32Hfp {
+            binaries {
+                executable {
+                    // Binary configuration.
+                }
+            }
+        }
     }
 
     sourceSets {
@@ -25,11 +47,17 @@ kotlin {
             dependsOn(commonMain)
         }
 
-        val macosX64Main by getting { dependsOn(nativeCommonMain) }
+        val macosX64Main by getting {
+            dependsOn(nativeCommonMain)
+        }
 
-        val linuxX64Main by getting { dependsOn(nativeCommonMain) }
+        val linuxX64Main by getting {
+            dependsOn(nativeCommonMain)
+        }
 
-        val linuxArm32HfpMain by getting { dependsOn(nativeCommonMain) }
+        val linuxArm32HfpMain by getting {
+            dependsOn(nativeCommonMain)
+        }
 
     }
 }
