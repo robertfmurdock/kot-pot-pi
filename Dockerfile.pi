@@ -1,0 +1,7 @@
+FROM balenalib/rpi-raspbian
+
+WORKDIR /usr/bin
+
+COPY build/bin/linuxArm32Hfp/releaseExecutable/app.kexe /usr/bin
+
+CMD [ "app.kexe" ]
