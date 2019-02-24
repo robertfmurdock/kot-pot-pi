@@ -61,3 +61,17 @@ kotlin {
 
     }
 }
+
+tasks {
+
+    val runExeLinux by creating(Exec::class) {
+        dependsOn("linuxX64MainBinaries")
+        executable = "build/bin/linuxX64/releaseExecutable/app.kexe"
+    }
+
+    val runExeLinuxArm32 by creating(Exec::class) {
+        dependsOn("linuxArm32HfpMainBinaries")
+        executable = "build/bin/linuxArm32Hfp/releaseExecutable/app.kexe"
+    }
+
+}
