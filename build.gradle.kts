@@ -1,3 +1,35 @@
+import com.zegreatrob.kotpotpi.build.BuildConstants
+
 plugins {
-  id("org.jetbrains.kotlin.konan") version "0.9.1"
+    id("org.jetbrains.kotlin.multiplatform") version "1.3.21"
+    id("com.github.ben-manes.versions") version "0.20.0"
+}
+
+kotlin {
+    targets {
+        macosX64()
+        linuxX64()
+        linuxArm32Hfp()
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-common:${BuildConstants.kotlinVersion}")
+                implementation("org.jetbrains.kotlin:kotlin-test-common:${BuildConstants.kotlinVersion}")
+                implementation("org.jetbrains.kotlin:kotlin-test-annotations-common:${BuildConstants.kotlinVersion}")
+            }
+        }
+
+        val nativeCommonMain by creating {
+            dependsOn(commonMain)
+        }
+
+        val macosX64Main by getting { dependsOn(nativeCommonMain) }
+
+        val linuxX64Main by getting { dependsOn(nativeCommonMain) }
+
+        val linuxArm32HfpMain by getting { dependsOn(nativeCommonMain) }
+
+    }
 }
